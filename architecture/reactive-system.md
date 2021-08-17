@@ -1,4 +1,4 @@
-# Reactive programming and reactive system is a serious staff
+# Reactive programming and reactive systems are some serious staff
 
 todo list
 
