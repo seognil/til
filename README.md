@@ -10,6 +10,6 @@ learn fast and share snippets.
 
 ## others' til
 
-<https://github.com/jbranchaud/til>
-<https://github.com/thoughtbot/til>
-<https://github.com/simonw/til>
+- <https://github.com/jbranchaud/til>
+- <https://github.com/thoughtbot/til>
+- <https://github.com/simonw/til>
