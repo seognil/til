@@ -1,4 +1,5 @@
 promise frame internal: <0.1ms
+
 setTimeout/setInterval frame internal: ~4ms
 
 ---
