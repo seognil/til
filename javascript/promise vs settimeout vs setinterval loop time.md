@@ -1,6 +1,6 @@
-promise frame internal: <0.1ms
+promise frame interval: <0.1ms
 
-setTimeout/setInterval frame internal: ~4ms
+setTimeout/setInterval frame interval: ~4ms
 
 ---
 
