@@ -41,10 +41,11 @@ const updateReadme = async () => {
         ### ${cate}
 
         ${topicPathListMap[cate]
-          .sort()
           .map(
-            (p) => `- [${getFileTitle(p)}](${encodeURI(relative(appRoot, p))}) ${getFileDate(p)}`,
+            (p) =>
+              `- ${getFileShortDate(p)} [${getFileTitle(p)}](${encodeURI(relative(appRoot, p))})`,
           )
+          .sort()
           .join('\n')}
       `,
     )
@@ -111,7 +112,7 @@ const getFileTitle = (filePath: string) => {
   return (fc.title ??= title);
 };
 
-const getFileDate = (filePath: string) => getFc(filePath).date!;
+const getFileShortDate = (filePath: string) => getFc(filePath).date!.replace(/\s.*$/, '');
 
 // * ------------------------------------------------ ensureFileDate
 
