@@ -1,8 +1,7 @@
 {
   "scripts": {
     "prepare": "husky install",
-    "build": "ts-node .husky/auto-update-readme.ts",
-    "format": "npx lint-staged"
+    "build": "ts-node .husky/auto-update-readme.ts && npx lint-staged"
   },
   "lint-staged": {
     "*.md": "prettier -w"
@@ -13,7 +12,6 @@
     "app-root-path": "^3.0.0",
     "dayjs": "^1.10.6",
     "fast-glob": "^3.2.7",
-    "globby": "^12.0.1",
     "gray-matter": "^4.0.3",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",

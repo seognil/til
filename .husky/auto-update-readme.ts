@@ -33,13 +33,15 @@ const updateReadme = async () => {
     return map;
   }, {});
 
-  const tocStr = Object.entries(topicPathListMap)
+  const tocStr = Object.keys(topicPathListMap)
+    .sort()
     .map(
-      ([cate, files]) =>
+      (cate) =>
         `
         ### ${cate}
 
-        ${files
+        ${topicPathListMap[cate]
+          .sort()
           .map(
             (p) => `- [${getFileTitle(p)}](${encodeURI(relative(appRoot, p))}) ${getFileDate(p)}`,
           )
