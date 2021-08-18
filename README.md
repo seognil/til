@@ -16,6 +16,10 @@ learn fast and share snippets.
 
 - [CAREER ADVICE for JUNIOR SOFTWARE DEVELOPERS](career/%5Byoutube%5D%20advice%20for%20junior%20developers.md) 2021-08-17 14:57:30
 
+### cs
+
+- [Q: What is the hex of 1.414 double](cs/ieee754-example.md) 2021-08-18 10:56:22
+
 ### concept
 
 - [Today I Learned Til](concept/til.md) 2021-08-16 19:14:35
@@ -23,10 +27,6 @@ learn fast and share snippets.
 ### javascript
 
 - [promise vs settimeout vs setinterval loop time](javascript/promise%20vs%20settimeout%20vs%20setinterval%20loop%20time.md) 2021-08-17 14:57:51
-
-### cs
-
-- [Q: What is the hex of 1.414 double](cs/ieee754-example.md) 2021-08-18 10:56:22
 
 <!-- toc:end -->
 

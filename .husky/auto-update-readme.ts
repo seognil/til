@@ -12,44 +12,28 @@ dayjs.extend(utc);
 
 const git = simpleGit();
 
-// * ================================================================================
-
 const README_MD = 'README.md';
 
-const fileCache: Record<
-  string,
-  {
-    matter?: matter.GrayMatterFile<string>;
-    date?: string;
+// * ================================================================================ progress
 
-    content?: string;
-
-    cate?: string;
-    title?: string;
-  }
-> = {};
-
-const cateMap: Record<string, string[]> = {};
-
-const task = async () => {
-  updateReadme();
-};
-
-// * ----------------------------------------------------------------
+// * ------------------------------------------------ task updateReadme
 
 const updateReadme = async () => {
   const readmeFilePath = resolve(appRoot, README_MD);
 
-  const allMdFiles = await getAllMdFiles();
+  const allMdFilePathList = await glob(`${appRoot}/[!node_modules]*/*.md`);
 
-  allMdFiles.forEach((p) => {
-    cateMap[getFileCate(p)] ??= [];
-    cateMap[getFileCate(p)].push(p);
-  });
+  await Promise.all(allMdFilePathList.map(ensureFileDate));
 
-  await Promise.all(allMdFiles.map(ensureFileDate));
+  // * ---------------- build toc
 
-  const toc = Object.entries(cateMap)
+  const topicPathListMap = allMdFilePathList.reduce<Record<string, string[]>>((map, filePath) => {
+    map[getFileCate(filePath)] ??= [];
+    map[getFileCate(filePath)].push(filePath);
+    return map;
+  }, {});
+
+  const tocStr = Object.entries(topicPathListMap)
     .map(
       ([cate, files]) =>
         `
@@ -67,13 +51,15 @@ const updateReadme = async () => {
     .map((e) => e.trim())
     .join('\n');
 
+  // * ---------------- update readme
+
   const readmeFileContent = readFileSync(readmeFilePath, 'utf-8');
 
   const newContent = readmeFileContent.replace(
     /<!-- toc:start -->(.|\n)*<!-- toc:end -->/m,
     `
     <!-- toc:start -->
-    ${toc}
+    ${tocStr}
     <!-- toc:end -->
     `
       .split('\n')
@@ -86,13 +72,20 @@ const updateReadme = async () => {
   git.add(readmeFilePath);
 };
 
-// * ----------------------------------------------------------------
+// * ------------------------------------------------ file metadata sync getter with cache
 
-const getAllMdFiles = async () => {
-  return glob(`${appRoot}/[!node_modules]*/*.md`);
-};
+const fileCache: Record<
+  string,
+  {
+    matter?: matter.GrayMatterFile<string>;
+    date?: string;
 
-// * ----------------------------------------------------------------
+    content?: string;
+
+    cate?: string;
+    title?: string;
+  }
+> = {};
 
 const getFc = (filePath: string) => (fileCache[filePath] ??= {});
 
@@ -102,15 +95,6 @@ const getFileContent = (filePath: string) => {
 
 const getFileMatter = (filePath: string) => {
   return (getFc(filePath).matter ??= matter(getFileContent(filePath)));
-};
-
-const getFileDate = (filePath: string) => getFc(filePath).date!;
-
-const ensureFileDate = async (filePath: string) => {
-  const fc = getFc(filePath);
-  if (fc.date) return;
-
-  fc.date ??= getFileMatter(filePath).data.date ?? (await updateFileDateAndReturn(filePath));
 };
 
 const getFileCate = (filePath: string) => (getFc(filePath).cate ??= basename(dirname(filePath)));
@@ -125,7 +109,16 @@ const getFileTitle = (filePath: string) => {
   return (fc.title ??= title);
 };
 
-// * ----------------------------------------------------------------
+const getFileDate = (filePath: string) => getFc(filePath).date!;
+
+// * ------------------------------------------------ ensureFileDate
+
+const ensureFileDate = async (filePath: string) => {
+  const fc = getFc(filePath);
+  if (fc.date) return;
+
+  fc.date ??= getFileMatter(filePath).data.date ?? (await updateFileDateAndReturn(filePath));
+};
 
 const updateFileDateAndReturn = async (filePath: string) => {
   const grayMatterFile = getFileMatter(filePath);
@@ -140,6 +133,8 @@ const updateFileDateAndReturn = async (filePath: string) => {
 
   return date;
 };
+
+// * ------------------------------------------------ rebuild file date as early as possible
 
 const getFileFsTime = async (filePath: string): Promise<string> => {
   const fileCreateDate = await getFileCreateDate(filePath);
@@ -161,6 +156,10 @@ const getFileCreateDate = async (filePath: string): Promise<Date> => {
   return Promise.resolve(stat.birthtime);
 };
 
-// * ================================================================================
+// * ================================================================================ run
+
+const task = async () => {
+  updateReadme();
+};
 
 task();
