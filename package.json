@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "prepare": "husky install",
+    "build": "ts-node .husky/auto-update-readme.ts",
+    "format": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.md": "prettier -w"
+  },
+  "devDependencies": {
+    "@types/app-root-path": "^1.2.4",
+    "@types/node": "^16.6.1",
+    "app-root-path": "^3.0.0",
+    "dayjs": "^1.10.6",
+    "fast-glob": "^3.2.7",
+    "globby": "^12.0.1",
+    "gray-matter": "^4.0.3",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "simple-git": "^2.44.0",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  }
+}
