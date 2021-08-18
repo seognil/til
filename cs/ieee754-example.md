@@ -1,3 +1,7 @@
+---
+date: '2021-08-18 10:56:22'
+---
+
 # Q: What is the hex of 1.414 double
 
 What's IEEE754: <https://en.wikipedia.org/wiki/IEEE_754>

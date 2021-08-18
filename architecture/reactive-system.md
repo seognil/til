@@ -1,3 +1,7 @@
+---
+date: '2021-08-16 19:14:46'
+---
+
 # Reactive programming and reactive systems are some serious staff
 
 todo list

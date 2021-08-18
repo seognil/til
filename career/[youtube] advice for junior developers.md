@@ -1,3 +1,7 @@
+---
+date: '2021-08-17 14:57:30'
+---
+
 # CAREER ADVICE for JUNIOR SOFTWARE DEVELOPERS
 
 <https://www.youtube.com/watch?v=hjIlTaAMsbI>

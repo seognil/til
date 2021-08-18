@@ -1,3 +1,7 @@
+---
+date: '2021-08-16 19:14:35'
+---
+
 # Today I Learned Til
 
 Til is a fast record system of daily study.
