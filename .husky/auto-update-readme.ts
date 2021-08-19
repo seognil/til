@@ -21,7 +21,7 @@ const README_MD = 'README.md';
 const updateReadme = async () => {
   const readmeFilePath = resolve(appRoot, README_MD);
 
-  const allMdFilePathList = await glob(`${appRoot}/[!node_modules]*/*.md`);
+  const allMdFilePathList = await getAllMds();
 
   await Promise.all(allMdFilePathList.map(ensureFileDate));
 
@@ -73,6 +73,21 @@ const updateReadme = async () => {
   writeFileSync(readmeFilePath, newContent);
 
   git.add(readmeFilePath);
+};
+
+// * ------------------------------------------------
+
+const getAllMds = async () => {
+  const files = await glob(`${appRoot}/[!node_modules]*/*.md`);
+
+  const status = await git.status();
+
+  const notAddedFiles = status.not_added.map((filePath) => {
+    const correctFilePath = /^(['"]).*\1$/.test(filePath) ? filePath.slice(1, -1) : filePath;
+    return resolve(appRoot, correctFilePath);
+  });
+
+  return files.filter((e) => !notAddedFiles.includes(e));
 };
 
 // * ------------------------------------------------ file metadata sync getter with cache
@@ -151,7 +166,7 @@ const getFileFsTime = async (filePath: string): Promise<string> => {
 
 const getFileFirstGitDate = async (filePath: string): Promise<Date> => {
   const fileGitStat = await git.log({ file: filePath });
-  return new Date(fileGitStat.all[fileGitStat.all.length - 1].date);
+  return new Date(fileGitStat.all[fileGitStat.all.length - 1]?.date);
 };
 
 const getFileCreateDate = async (filePath: string): Promise<Date> => {
