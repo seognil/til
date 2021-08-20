@@ -15,6 +15,7 @@ learn fast and share snippets.
 ### career
 
 - 2021-08-17 [CAREER ADVICE for JUNIOR SOFTWARE DEVELOPERS](career/%5Byoutube%5D%20advice%20for%20junior%20developers.md)
+- 2021-08-19 [Reacting to Controversial Opinions of Software Engineers](career/%5Byoutube%5D%20Reacting%20to%20Controversial%20Opinions%20of%20Software%20Engineers.md)
 
 ### concept
 
