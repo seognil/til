@@ -25,10 +25,6 @@ learn fast and share snippets.
 
 - 2021-08-18 [Q: What is the hex of 1.414 double](cs/ieee754-example.md)
 
-### javascript
-
-- 2021-08-17 [promise vs settimeout vs setinterval loop time](javascript/promise%20vs%20settimeout%20vs%20setinterval%20loop%20time.md)
-
 <!-- toc:end -->
 
 ## others' til
