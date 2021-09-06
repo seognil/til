@@ -78,7 +78,10 @@ const updateReadme = async () => {
 // * ------------------------------------------------
 
 const getAllMds = async () => {
-  const files = await glob(`${appRoot}/[!node_modules]*/*.md`);
+  const globFiles = await glob(`${appRoot}/**/*.md`);
+  const mdFiles = globFiles
+    .filter((e) => !e.includes('node_modules'))
+    .filter((e) => !e.includes(`${appRoot}/README.md`));
 
   const status = await git.status();
 
@@ -87,7 +90,9 @@ const getAllMds = async () => {
     return resolve(appRoot, correctFilePath);
   });
 
-  return files.filter((e) => !notAddedFiles.includes(e));
+  const validFiles = mdFiles.filter((e) => !notAddedFiles.includes(e));
+
+  return validFiles;
 };
 
 // * ------------------------------------------------ file metadata sync getter with cache

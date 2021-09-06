@@ -2,6 +2,8 @@
 date: '2021-08-17 14:57:51'
 ---
 
+# Promise vs setTimeout vs setInterval, frame time comparation
+
 promise frame interval: <0.1ms
 
 setTimeout/setInterval frame interval: ~4ms
