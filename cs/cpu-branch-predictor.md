@@ -6,6 +6,7 @@ date: '2021-09-13 14:19:10'
 
 - [浅谈 CPU 分支预测技术](http://matt33.com/2020/04/16/cpu-branch-predictor/)
 - [提前 if 判断帮助 CPU 分支预测](https://dubbo.apache.org/zh/blog/2019/02/03/%E6%8F%90%E5%89%8Dif%E5%88%A4%E6%96%AD%E5%B8%AE%E5%8A%A9cpu%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B/)
+- [Why is processing a sorted array faster than processing an unsorted array?](https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array#11227902)
 
 ---
 
