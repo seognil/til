@@ -24,6 +24,7 @@ learn fast and share snippets.
 ### cs
 
 - 2021-08-18 [Q: What is the hex of 1.414 double](cs/ieee754-example.md)
+- 2021-09-13 [CPU Branch Predictor And Array Loop](cs/cpu-branch-predictor.md)
 
 ### javascript
 
